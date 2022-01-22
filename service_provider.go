@@ -19,8 +19,8 @@ func (this ServiceProvider) Start() error {
 func (this ServiceProvider) Register(container contracts.Application) {
 	container.Singleton("hash", func(config contracts.Config) contracts.HasherFactory {
 		return &Factory{
-			config:  config,
-			hashers: make(map[string]contracts.Hasher),
+			config: config,
+			hashes: make(map[string]contracts.Hasher),
 			drivers: map[string]contracts.HasherProvider{
 				"bcrypt": func(config contracts.Fields) contracts.Hasher {
 					return &Bcrypt{

@@ -9,7 +9,7 @@ import (
 
 type Factory struct {
 	config  contracts.Config
-	hashers map[string]contracts.Hasher
+	hashes  map[string]contracts.Hasher
 	drivers map[string]contracts.HasherProvider
 }
 
@@ -27,13 +27,13 @@ func (this *Factory) Check(value, hashedValue string, options contracts.Fields) 
 
 func (this Factory) getConfig(name string) contracts.Fields {
 	return this.config.GetFields(
-		utils.IfString(name == "default", "hashing", fmt.Sprintf("hashing.hashers.%s", name)),
+		utils.IfString(name == "default", "hashing", fmt.Sprintf("hashing.hashes.%s", name)),
 	)
 }
 
 func (this *Factory) Driver(name string) contracts.Hasher {
-	if hasher, existsHasher := this.hashers[name]; existsHasher {
-		return hasher
+	if hashed, existsHashed := this.hashes[name]; existsHashed {
+		return hashed
 	}
 
 	config := this.getConfig(name)
@@ -44,11 +44,11 @@ func (this *Factory) Driver(name string) contracts.Hasher {
 		logs.WithFields(nil).Fatal(fmt.Sprintf("不支持的哈希驱动：%s", driver))
 	}
 
-	this.hashers[name] = driveProvider(config)
+	this.hashes[name] = driveProvider(config)
 
-	return this.hashers[name]
+	return this.hashes[name]
 }
 
-func (this *Factory) Extend(driver string, hasherProvider contracts.HasherProvider) {
-	this.drivers[driver] = hasherProvider
+func (this *Factory) Extend(driver string, hashedProvider contracts.HasherProvider) {
+	this.drivers[driver] = hashedProvider
 }
