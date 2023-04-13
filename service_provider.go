@@ -8,15 +8,19 @@ import (
 type ServiceProvider struct {
 }
 
-func (this ServiceProvider) Stop() {
+func NewService() contracts.ServiceProvider {
+	return &ServiceProvider{}
+}
+
+func (provider ServiceProvider) Stop() {
 
 }
 
-func (this ServiceProvider) Start() error {
+func (provider ServiceProvider) Start() error {
 	return nil
 }
 
-func (this ServiceProvider) Register(container contracts.Application) {
+func (provider ServiceProvider) Register(container contracts.Application) {
 	container.Singleton("hash", func(config contracts.Config) contracts.HasherFactory {
 		return &Factory{
 			config: config,
