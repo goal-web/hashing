@@ -3,8 +3,6 @@ module github.com/goal-web/hashing
 go 1.20
 
 require (
-	github.com/goal-web/contracts v0.3.0
-	github.com/goal-web/supports v0.3.0
 	golang.org/x/crypto v0.0.0-20220128200615-198e4374d7ed
 )
 
