@@ -2,9 +2,7 @@ module github.com/goal-web/hashing
 
 go 1.23.1
 
-require (
-	golang.org/x/crypto v0.0.0-20220128200615-198e4374d7ed
-)
+require golang.org/x/crypto v0.0.0-20220128200615-198e4374d7ed
 
 require (
 	github.com/apex/log v1.9.0 // indirect
