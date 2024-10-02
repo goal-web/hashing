@@ -1,6 +1,6 @@
 module github.com/goal-web/hashing
 
-go 1.20
+go 1.23.1
 
 require (
 	golang.org/x/crypto v0.0.0-20220128200615-198e4374d7ed
